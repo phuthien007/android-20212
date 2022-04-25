@@ -15,7 +15,7 @@ public class SecondActivity extends AppCompatActivity {
     public static final String EXTRA_REPLY =
             "com.example.android.twoactivities.extra.REPLY";
     EditText mReply;
-
+    private static final String LOG_TAG = SecondActivity.class.getSimpleName();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,13 +24,14 @@ public class SecondActivity extends AppCompatActivity {
         tv = (TextView) findViewById(R.id.text_header);
         Intent intent = getIntent();
         String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
-        Log.i("TAG", message);
+
         tv.setText(message);
     }
 
     public void returnReply(View view){
         String reply = mReply.getText().toString();
         Intent replyIntent = new Intent();
+        Log.d(LOG_TAG, "End SecondActivity");
         replyIntent.putExtra(EXTRA_REPLY, reply);
         setResult(RESULT_OK,replyIntent);
         finish();
